@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Беташар | Сағи &amp; Нұрай</title>
+  <meta name="description" content="Сағи мен Нұрайдың беташар тойына шақыру">
+  <meta property="og:title" content="Беташар | Сағи &amp; Нұрай">
+  <meta property="og:description" content="Салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз">
+  <meta property="og:image" content="images/page_builder_comp_1778180096358_c3fa445e4d0d4fdaba4d2d1a0769069f.webp">
+  <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <!-- Top Notification Toast -->
+  <div class="top-toast" id="top-toast">
+    <span>💌 Шақыруға жауап беруді ұмытпаңыз 🙏</span>
+    <button class="toast-action-btn" onclick="scrollToRsvp()">Жауап беру →</button>
+    <button class="toast-close-btn" onclick="closeToast()">✕</button>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="wedding-audio" loop preload="auto">
+    <source src="music.mp3" type="audio/mp3">
+    <source src="https://shaqyru.kz/sounds/1687438130.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Floating Audio Button -->
+  <div class="audio-fab" id="audio-toggle-btn" onclick="toggleAudio()">
+    <div class="audio-icon-wrap">
+      <svg class="play-icon-svg" viewBox="0 0 24 24">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+      <div class="equalizer">
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+      </div>
+    </div>
+    <span id="audio-btn-label">Әуен қосу</span>
+  </div>
+
+  <!-- Floating Wishes Button -->
+  <div class="wishes-fab" id="write-wish-btn" onclick="openWishModal()">
+    <span>✍️</span>
+    <span>ТІЛЕК ЖАЗУ</span>
+  </div>
+
+  <!-- Success Notification Toast -->
+  <div class="success-alert" id="success-alert">
+    <span>✅</span>
+    <span id="success-alert-text">Жауабыңыз қабылданды! Рақмет! 🙏</span>
+  </div>
+
+  <!-- Modal: Write Wish -->
+  <div class="modal-backdrop" id="wish-modal" onclick="closeModalOnBackdrop(event, 'wish-modal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Жас жұбайларға ақ тілек</h3>
+        <button class="modal-close" onclick="closeModal('wish-modal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <form class="wish-form-group" onsubmit="handleWishSubmit(event)">
+          <input type="text" id="wish-author-input" class="wish-input-field" placeholder="Есіміңіз" required />
+          <textarea id="wish-text-input" class="wish-textarea-field" placeholder="Жас жұбайларға шын жүректен ақ тілегіңіз..." required></textarea>
+          <button type="submit" class="wish-modal-submit">ЖІБЕРУ</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: RSVP Name -->
+  <div class="modal-backdrop" id="rsvp-modal" onclick="closeModalOnBackdrop(event, 'rsvp-modal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Есіміңізді жазыңыз:</h3>
+        <button class="modal-close" onclick="closeModal('rsvp-modal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <form class="wish-form-group" onsubmit="handleRsvpModalSubmit(event)">
+          <input type="text" id="rsvp-modal-name-input" class="wish-input-field" placeholder="Есіміңізді енгізіңіз" required />
+          <button type="submit" class="wish-modal-submit">ЖІБЕРУ</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: All Wishes -->
+  <div class="modal-backdrop" id="all-wishes-modal" onclick="closeModalOnBackdrop(event, 'all-wishes-modal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Қонақтардың тілектері</h3>
+        <button class="modal-close" onclick="closeModal('all-wishes-modal')">✕</button>
+      </div>
+      <div class="modal-body" id="all-wishes-list" style="display:flex; flex-direction:column; gap:14px;">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="phone-container">
+      <div class="phone-notch"></div>
+      <div class="canvas-block" id="canvas-block">
+
+        <div class="comp " style="left:50%; top:4.399999999999999%; z-index:0; width:411px; max-width:100%; height:557px;">
+          <img src="images/page_builder_comp_1778180096358_c3fa445e4d0d4fdaba4d2d1a0769069f.webp" alt="page_builder_comp_1778159142689_54c3ff0a425a497fb84f923e6e6b1a34 1 (1).jpg" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp anim-init anim-fadeIn" style="left:50%; top:6.999999999999999%; z-index:125; width:471px; max-width:100%; height:auto;">
+          <div style="font-size:58px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#686a34; text-align:center; font-weight:normal; line-height:1.4;">
+            Сағи
+          </div>
+        </div>
+        <div class="comp anim-init anim-fadeIn" style="left:50%; top:7.844444444444444%; z-index:141; width:471px; max-width:100%; height:auto;">
+          <div style="font-size:58px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#686a34; text-align:center; font-weight:normal; line-height:1.4;">
+            &
+          </div>
+        </div>
+        <div class="comp anim-init anim-fadeIn" style="left:50%; top:8.88888888888889%; z-index:139; width:471px; max-width:100%; height:auto;">
+          <div style="font-size:58px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#686a34; text-align:center; font-weight:normal; line-height:1.4;">
+            Нұрай
+          </div>
+        </div>
+        <div class="comp anim-init anim-fadeIn" style="left:50%; top:10.40493827160494%; z-index:110; width:345px; max-width:100%; height:auto; transform: translate(-50%, -50%) rotate(360deg);">
+          <div style="font-size:16px; font-family:'KZ_RomulC', Arial, sans-serif; color:#686a34; text-align:center; font-weight:normal; line-height:1.4;">
+            Беташар тойына шақыру
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInDown" style="left:50%; top:16.00966757403282%; z-index:135; width:304px; max-width:100%; height:auto;">
+          <div style="font-size:16px; font-family:'KZ_RomulC', Arial, sans-serif; color:#000000; text-align:center; font-weight:normal; line-height:1.4;">
+            Сіз(дер)ді ұлымыз Сағи мен келініміз Нұрайдың беташар тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз.
+          </div>
+        </div>
+        <div class="comp " style="left:50%; top:18.36401219402352%; z-index:120; width:399px; max-width:100%; height:701px; transform: translate(-50%, -50%) rotate(0deg);">
+          <img src="images/page_builder_comp_1778159214146_887f5424514b422bab4c4e10655d2cb0.webp" alt="Inkar - 2.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp anim-init anim-slideInRight" style="left:50%; top:27.61602718351251%; z-index:64; width:300px; max-width:100%; height:auto;">
+          <div style="font-size:38px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#ffffff; text-align:center; font-weight:normal; line-height:1.4;">
+            Өтетін күні:
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInUp" style="left:50%; top:32.93441940958654%; z-index:65; width:294px; max-width:100%; height:404px; transform: translate(-50%, -50%) rotate(0deg);">
+          <div class="cal-wrapper">
+            <div class="cal-title">ҚАЗАН 2026</div>
+            <div class="cal-weekdays">
+              <div>ДС</div><div>СС</div><div>СР</div><div>БС</div><div>ЖМ</div><div>СБ</div><div>ЖС</div>
+            </div>
+            <div class="cal-days">
+              <div class="cal-day-cell"></div>
+              <div class="cal-day-cell"></div>
+              <div class="cal-day-cell"></div>
+              <div class="cal-day-cell">1</div>
+              <div class="cal-day-cell">2</div>
+              <div class="cal-day-cell">3</div>
+              <div class="cal-day-cell">4</div>
+              <div class="cal-day-cell">5</div>
+              <div class="cal-day-cell">6</div>
+              <div class="cal-day-cell">7</div>
+              <div class="cal-day-cell">8</div>
+              <div class="cal-day-cell">9</div>
+              <div class="cal-day-cell">10</div>
+              <div class="cal-day-cell">11</div>
+              <div class="cal-day-cell">12</div>
+              <div class="cal-day-cell">13</div>
+              <div class="cal-day-cell">14</div>
+              <div class="cal-day-cell">15</div>
+              <div class="cal-day-cell">16</div>
+              <div class="cal-day-cell">17</div>
+              <div class="cal-day-cell">18</div>
+              <div class="cal-day-cell">19</div>
+              <div class="cal-day-cell">20</div>
+              <div class="cal-day-cell">21</div>
+              <div class="cal-day-cell">22</div>
+              <div class="cal-day-cell">23</div>
+              <div class="cal-day-cell">24</div>
+              <div class="cal-day-cell">25</div>
+              <div class="cal-day-cell">26</div>
+              <div class="cal-day-cell">27</div>
+              <div class="cal-day-cell">28</div>
+              <div class="cal-day-cell">29</div>
+              <div class="cal-day-cell event-day">
+                <svg class="heart-marker-svg" viewBox="0 0 24 24">
+                  <path fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>30</span>
+              </div>
+              <div class="cal-day-cell">31</div>
+              <div class="cal-day-cell"></div>
+            </div>
+            <div class="cal-time-badge">БАСТАЛУЫ 15:30</div>
+          </div>
+        </div>
+        <div class="comp " style="left:50%; top:33.53748708152446%; z-index:2; width:398px; max-width:100%; height:889px; transform: translate(-50%, -50%) rotate(0deg);">
+          <img src="images/page_builder_comp_1778160300874_b31e6d1a72434a10876f8249d8c3b317.webp" alt="Inkar - 3.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp anim-init anim-slideInUp" style="left:50%; top:40.757777235243076%; z-index:126; width:330px; max-width:100%; height:auto;">
+          <div style="font-size:16px; font-family:'KZ_RomulC', Arial, sans-serif; color:#ffffff; text-align:center; font-weight:normal; line-height:1.4;">
+            той бағдарламасы нақты уақытпен жоспарланған. уақытында келулеріңізді сұраймыз.
+          </div>
+        </div>
+        <div class="comp " style="left:50%; top:47.57777777777779%; z-index:-1; width:383px; max-width:100%; height:569px;">
+          <img src="images/page_builder_comp_1778162489538_0738c8c14f6a4c1f91520c2fb5f781be.webp" alt="IMG_2998.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp anim-init anim-slideInRight" style="left:50%; top:49.20142817041119%; z-index:137; width:413px; max-width:100%; height:auto; transform: translate(-50%, -50%) rotate(0deg);">
+          <div style="font-size:36px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#686a34; text-align:center; font-weight:normal; line-height:1.4;">
+            Мекен-жайымыз:
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInRight" style="left:50%; top:50.9555555555556%; z-index:136; width:360px; max-width:100%; height:auto;">
+          <div style="font-size:18px; font-family:'KZ_RomulC', Arial, sans-serif; color:#000000; text-align:center; font-weight:normal; line-height:1.4;">
+            Қызылорда обл., Жалағаш ауд.
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInLeft" style="left:50%; top:52.844756737237475%; z-index:68; width:326px; max-width:100%; height:auto; transform: translate(-50%, -50%) rotate(0deg);">
+          <div style="font-size:18px; font-family:'KZ_RomulC', Arial, sans-serif; color:#000000; text-align:center; font-weight:normal; line-height:1.4;">
+            Есет батыр ауылы, Бөлебай би 5
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInUp" style="left:50%; top:55.53111436631942%; z-index:145; width:248px; max-width:100%; height:49px;">
+          <a href="https://yandex.kz/maps/?text=Қызылорда+облысы+Жалағаш+ауданы+Есет+батыр+Бөлебай+би+5" target="_blank" rel="noopener noreferrer" class="map-action-btn">
+            Картаны ашу
+          </a>
+        </div>
+        <div class="comp " style="left:50%; top:57.733333333333356%; z-index:127; width:376px; max-width:100%; height:359px;">
+          <img src="images/page_builder_comp_1778161256742_39aa3cf2eca640a6b445806c4cc1d0d8.webp" alt="IMG_2990.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp anim-init anim-slideInDown" style="left:50%; top:63.8222222222222%; z-index:72; width:300px; max-width:100%; height:auto;">
+          <div style="font-size:24px; font-family:'KZ_RomulC', Arial, sans-serif; color:#374151; text-align:center; font-weight:normal; line-height:1.4;">
+            Тойға келуіңізді растауыңызды сұраймыз
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInLeft" style="left:50%; top:65.94074074074074%; z-index:73; width:460px; max-width:100%; height:auto; transform: translate(-50%, -50%) rotate(360deg);">
+          <div style="font-size:42px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#374151; text-align:center; font-weight:normal; line-height:1.4;">
+            Сауалнама:
+          </div>
+        </div>
+        <div class="comp " style="left:54.44444444444444%; top:65.95185185185186%; z-index:117; width:290px; max-width:100%; height:87px;">
+          <img src="images/page_builder_comp_1778141651346_1a70df3a0b7e4580ae108f7f181379b8.webp" alt="Зейнетку шығу мерейтойы.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp " style="left:50%; top:67.9777777777778%; z-index:128; width:375px; max-width:100%; height:593px;">
+          <img src="images/page_builder_comp_1778161400562_1e30d6a27c704e468182335da77ab5c1.webp" alt="Inkar.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp " id="rsvp-section" style="left:50%; top:71.01844444938679%; z-index:150; width:349px; max-width:100%; height:auto;">
+          <div class="rsvp-form-container">
+            <div class="rsvp-option selected" onclick="selectRsvpOption(this, 'yes')">
+              <div class="rsvp-radio-circle"><div class="rsvp-radio-dot"></div></div>
+              <span class="rsvp-option-text">Иә, барамын!</span>
+            </div>
+            <div class="rsvp-option" onclick="selectRsvpOption(this, 'spouse')">
+              <div class="rsvp-radio-circle"><div class="rsvp-radio-dot"></div></div>
+              <span class="rsvp-option-text">Жұбайыммен бірге барамын</span>
+            </div>
+            <div class="rsvp-option" onclick="selectRsvpOption(this, 'no')">
+              <div class="rsvp-radio-circle"><div class="rsvp-radio-dot"></div></div>
+              <span class="rsvp-option-text">Өкінішке орай, келе алмаймын</span>
+            </div>
+            <button type="button" class="rsvp-submit-button" onclick="openRsvpNameModal()">ЖАУАП БЕРУ</button>
+          </div>
+        </div>
+        <div class="comp anim-init anim-zoomIn" style="left:50%; top:77.6688910590278%; z-index:97; width:318px; max-width:100%; height:115px;">
+          <div class="timer-card-content">
+            <div class="timer-badge-title">ОҚИҒА БАСТАЛДЫ!</div>
+            <div class="timer-ribbon-decor"></div>
+          </div>
+        </div>
+        <div class="comp " style="left:50%; top:81.14814814814815%; z-index:1; width:376px; max-width:100%; height:561px;">
+          <img src="images/page_builder_comp_1778164012006_2b709cc68c0e4067bdc62854c50241f2.webp" alt="Inkar.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp anim-init anim-slideInLeft" style="left:50%; top:81.4%; z-index:79; width:300px; max-width:100%; height:auto;">
+          <div style="font-size:42px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#000000; text-align:center; font-weight:normal; line-height:1.4;">
+            Ізгі тілектер:
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInRight" style="left:50%; top:87.16222873263882%; z-index:138; width:352px; max-width:100%; height:441px;">
+          <div class="wishes-carousel-wrap">
+            <div class="wishes-slider">
+              <div class="wishes-track" id="wishes-track">
+                <!-- Wishes dynamically loaded -->
+              </div>
+            </div>
+            <div class="wishes-dots" id="wishes-dots"></div>
+            <button type="button" class="all-wishes-btn" onclick="openAllWishesModal()">
+              <span>БАРЛЫҚ ТІЛЕКТЕРДІ ОҚУ</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInRight" style="left:50%; top:93.06666666666665%; z-index:76; width:300px; max-width:100%; height:auto;">
+          <div style="font-size:42px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#374151; text-align:center; font-weight:normal; line-height:1.4;">
+            Той иелері:
+          </div>
+        </div>
+        <div class="comp " style="left:50%; top:93.75555555555557%; z-index:134; width:375px; max-width:100%; height:579px;">
+          <img src="images/page_builder_comp_1778164057018_ccd48c45dcb04c0f93da0e60fb09d62d.webp" alt="Inkar.png" style="border-radius:0px;" loading="lazy" />
+        </div>
+        <div class="comp anim-init anim-slideInLeft" style="left:50%; top:95.17777777777773%; z-index:140; width:347px; max-width:100%; height:auto;">
+          <div style="font-size:18px; font-family:'KZ_RomulC', Arial, sans-serif; color:#374151; text-align:center; font-weight:normal; line-height:1.4;">
+            Серік - Күланда
+          </div>
+        </div>
+        <div class="comp anim-init anim-slideInUp" style="left:50%; top:95.94444444444443%; z-index:100; width:484px; max-width:100%; height:363px;">
+          <img src="images/page_builder_comp_1777211657938_3fb05f7ff21849f5be68e9dc51410968.webp" alt="Meadow and Mountains Floral Borders - Wild Flowers Borders - Outdoors Wedding - Rustic Mountains - Mountain Clipart - Watercolor Mountain - Etsy (1).png" style="border-radius:0px;" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
