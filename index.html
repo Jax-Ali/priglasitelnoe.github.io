@@ -41,11 +41,6 @@
     <span id="audio-btn-label">Әуен қосу</span>
   </div>
 
-  <!-- Floating Wishes Button -->
-  <div class="wishes-fab" id="write-wish-btn" onclick="openWishModal()">
-    <span>✍️</span>
-    <span>ТІЛЕК ЖАЗУ</span>
-  </div>
 
   <!-- Success Notification Toast -->
   <div class="success-alert" id="success-alert">
@@ -53,22 +48,7 @@
     <span id="success-alert-text">Жауабыңыз қабылданды! Рақмет! 🙏</span>
   </div>
 
-  <!-- Modal: Write Wish -->
-  <div class="modal-backdrop" id="wish-modal" onclick="closeModalOnBackdrop(event, 'wish-modal')">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 class="modal-title">Жас жұбайларға ақ тілек</h3>
-        <button class="modal-close" onclick="closeModal('wish-modal')">✕</button>
-      </div>
-      <div class="modal-body">
-        <form class="wish-form-group" onsubmit="handleWishSubmit(event)">
-          <input type="text" id="wish-author-input" class="wish-input-field" placeholder="Есіміңіз" required />
-          <textarea id="wish-text-input" class="wish-textarea-field" placeholder="Жас жұбайларға шын жүректен ақ тілегіңіз..." required></textarea>
-          <button type="submit" class="wish-modal-submit">ЖІБЕРУ</button>
-        </form>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Modal: RSVP Name -->
   <div class="modal-backdrop" id="rsvp-modal" onclick="closeModalOnBackdrop(event, 'rsvp-modal')">
@@ -82,19 +62,6 @@
           <input type="text" id="rsvp-modal-name-input" class="wish-input-field" placeholder="Есіміңізді енгізіңіз" required />
           <button type="submit" class="wish-modal-submit">ЖІБЕРУ</button>
         </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal: All Wishes -->
-  <div class="modal-backdrop" id="all-wishes-modal" onclick="closeModalOnBackdrop(event, 'all-wishes-modal')">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 class="modal-title">Қонақтардың тілектері</h3>
-        <button class="modal-close" onclick="closeModal('all-wishes-modal')">✕</button>
-      </div>
-      <div class="modal-body" id="all-wishes-list" style="display:flex; flex-direction:column; gap:14px;">
-        <!-- Filled dynamically -->
       </div>
     </div>
   </div>
@@ -188,7 +155,7 @@
               <div class="cal-day-cell">31</div>
               <div class="cal-day-cell"></div>
             </div>
-            <div class="cal-time-badge">БАСТАЛУЫ 15:30</div>
+            <div class="cal-time-badge">БАСТАЛУЫ 10:00</div>
           </div>
         </div>
         <div class="comp " style="left:50%; top:33.53748708152446%; z-index:2; width:398px; max-width:100%; height:889px; transform: translate(-50%, -50%) rotate(0deg);">
@@ -266,25 +233,6 @@
         </div>
         <div class="comp " style="left:50%; top:81.14814814814815%; z-index:1; width:376px; max-width:100%; height:561px;">
           <img src="images/page_builder_comp_1778164012006_2b709cc68c0e4067bdc62854c50241f2.webp" alt="Inkar.png" style="border-radius:0px;" loading="lazy" />
-        </div>
-        <div class="comp anim-init anim-slideInLeft" style="left:50%; top:81.4%; z-index:79; width:300px; max-width:100%; height:auto;">
-          <div style="font-size:42px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#000000; text-align:center; font-weight:normal; line-height:1.4;">
-            Ізгі тілектер:
-          </div>
-        </div>
-        <div class="comp anim-init anim-slideInRight" style="left:50%; top:87.16222873263882%; z-index:138; width:352px; max-width:100%; height:441px;">
-          <div class="wishes-carousel-wrap">
-            <div class="wishes-slider">
-              <div class="wishes-track" id="wishes-track">
-                <!-- Wishes dynamically loaded -->
-              </div>
-            </div>
-            <div class="wishes-dots" id="wishes-dots"></div>
-            <button type="button" class="all-wishes-btn" onclick="openAllWishesModal()">
-              <span>БАРЛЫҚ ТІЛЕКТЕРДІ ОҚУ</span>
-              <span>→</span>
-            </button>
-          </div>
         </div>
         <div class="comp anim-init anim-slideInRight" style="left:50%; top:93.06666666666665%; z-index:76; width:300px; max-width:100%; height:auto;">
           <div style="font-size:42px; font-family:'_AsylbekM02Shelley', Arial, sans-serif; color:#374151; text-align:center; font-weight:normal; line-height:1.4;">
